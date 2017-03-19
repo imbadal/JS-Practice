@@ -1,2 +1,2 @@
 # JS-Practice
-Thais COntail the JS programming concepts
+Thais Contains the JS programming concepts
