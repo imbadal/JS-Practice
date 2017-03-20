@@ -197,7 +197,7 @@ var
 var invokefun = function(name) {
     return 'Hello  ' + name;
 };
-console.log(invokefun); // funchion shows a s output
+console.log(invokefun); // funchion shows as output
 console.log(invokefun()); //Hello undefined
 console.log(invokefun('likun')); //Hello likun
 
@@ -210,20 +210,81 @@ console.log(invokefun);
 
 "Here is a string,Dont be worry no error come for his.look at the next line";
 
-3;//no error
-5;//no error i.e valid
+3; //no error
+5; //no error i.e valid
 {
-  name: 'mark'
-};//no error
+    name: 'mark'
+}; //no error
 
 // anonymous function [look sincerely]
-var myname='likun';
-(function (name) {
-  console.log('ha ha!!!!!Its a cheat...........Good job  '+name);
+var myname = 'likun';
+(function(name) {
+    console.log('ha ha!!!!!Its a cheat...........Good job  ' + name);
 }(myname));
 
+// **********IIFE and safe code***********
 
+var greeting = 'hola';
+(function(global, name) {
+    global.greeting = 'hello';
+    console.log(greeting + ' ' + name);
+}(window, 'likun'));
 
+console.log(greeting);
+
+// ******Understanding Closures****************
+
+function greetme(whattosay) {
+    return function(name) {
+        console.log(whattosay + " " + name);
+    }
+}
+greetme('hay')('raes'); //one way to pass arguments
+
+var sayHi = greetme('hi'); //other way to pass arguments
+sayHi('rase'); //this is a closure
+
+//Understanding closure part 2
+
+function Builtfun() {
+    var ar = [];
+    for (var i = 0; i < 3; i++) {
+        ar.push(
+            function() {
+                console.log(i);
+            }
+        );
+    }
+    return ar;
+}
+var fs = Builtfun();
+fs[0]();
+fs[1]();
+fs[2]();
+
+//closure
+
+function Builtfun1() {
+
+    var arr = [];
+
+    for (var i = 0; i < 3; i++) {
+
+        arr.push(
+            (function(j) {
+                return function() {
+                    console.log(j);
+                }
+
+            }(i))
+        )
+    }
+    return arr;
+}
+var fs1 = Builtfun1();
+fs1[0]();
+fs1[1]();
+fs1[2]();
 
 
 
