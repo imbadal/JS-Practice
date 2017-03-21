@@ -286,7 +286,162 @@ fs1[0]();
 fs1[1]();
 fs1[2]();
 
+// ***********Function Factories**********
+
+function callMyname(language) {
+    return function(firstname, lastname) {
+        if (language === 'en') {
+            console.log('Hello ' + firstname + ' ' + lastname);
+        }
+        if (language === 'es') {
+            console.log('Hola ' + firstname + ' ' + lastname);
+        }
+    }
+}
+var greeten = callMyname('en');
+greeten('jay', 'raver')
+
+var greetes = callMyname('es');
+greetes('yash', 'zax');
+
+// ****************closures and callbacks*************
+// remove commentlines 309 - 316
+
+function sayhi() {
+    var say = 'hi';
+    setTimeout(function() {
+        console.log(say);
+    }, 3000)
+}
+sayhi();
+
+// callback function : a functionyou gave to another
+// function to be run when the other function is finished
+// example of callback function
+
+function tellGoodluck(callback) {
+    var var1 = 'Good Luck';
+    callback();
+}
+tellGoodluck(function() {
+    console.log('Good Luck');
+});
+
+tellGoodluck(function() {
+    console.log(' well done');
+});
+
+// ******CALL() , APPLY() & BIND()************
+
+var person3 = {
+    firstname: 'John',
+    lastname: 'mark',
+    getFullname: function() {
+        var fullname = this.firstname + ' ' + this.lastname;
+        return fullname;
+
+    }
+}
+var logName = function(lang1, lang2) {
+
+    console.log('Logged: ' + this.getFullname());
+    console.log('arguments: ' + lang1 + ' ' + lang2);
+    console.log('----------------------------');
+
+}.bind(person3); //instead of .bind(person3); add the next two line
+
+// var logPersonName=logName.bind(person3);
+// logPersonName();
+
+logName();
+
+logName.call(person3, 'en', 'es');
+logName.apply(person3, ['en', 'es']);
+
+// .apply .bind .call in other way
+(function(lang1, lang2) {
+
+    console.log('Logged: ' + this.getFullname());
+    console.log('arguments: ' + lang1 + ' ' + lang2);
+
+}.apply(person3, ['en', 'es']));
+
+// ******Function Borrowing*********
+
+var person4 = {
+    firstname: 'salman',
+    lastname: 'zuker'
+}
+console.log(person3.getFullname.apply(person4));
+
+// Function currying
+
+function multiply(a, b) {
+    return a * b;
+}
+var multiplyByTwo = multiply.bind(this, 2);
+console.log(multiplyByTwo(4)); // o/p 8
+
+var multiplyByTwo = multiply.bind(this, 2);
+console.log(multiplyByTwo(5)); // o/p 10
+
+var multiplyByTwo = multiply.bind(this, 2, 2);
+console.log(multiplyByTwo(5)); // o/p 4
+
+var multiplyByTwo = multiply.bind(this);
+console.log(multiplyByTwo(5, 4)); // o/p 20
+
+// creating a copy of a function but with some preset parameters is function currying
 
 
+// ********Functional Programming*************
+
+function mapForEach(arr, fn) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i++) {
+        newArr.push(
+            fn(arr[i])
+        )
+    }
+    return newArr;
+}
+
+var arr1 = [1, 2, 3, 4, 5];
+console.log(arr1);
+
+var arr2 = mapForEach(arr1, function(item) {
+    return item * 2;
+});
+
+console.log(arr2);
+
+var arr3 = mapForEach(arr1, function(item) {
+    return item % 2 === 0;
+});
+console.log(arr3);
+
+var checkPoint = function(limiter, item) {
+    return item > limiter;
+}
+var arr4 = mapForEach(arr1, checkPoint.bind(this, 2));
+console.log(arr4);
+
+var checkLastPoint = function(limiter) {
+    return function(limiter, item) {
+        return item > limiter;
+    }.bind(this, limiter);
+};
+
+var arr5 = mapForEach(arr1, checkLastPoint(1));
+console.log(arr5);
+
+// underscore.js for functional Programming
+//  alter =nate library lodash
+//use underscore library
+var arr1 = [1, 2, 3, 4, 5];
+var arr6 = _.map(arr1, function(item) {
+    return item * 3;
+});
+console.log(arr6);
 
 //reach at me
