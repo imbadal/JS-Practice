@@ -444,4 +444,100 @@ var arr6 = _.map(arr1, function(item) {
 });
 console.log(arr6);
 
+
+// *************Object-Oriented Javascript and Prototypal Inheritance**************
+
+// Inheritance : one object gets and access to the property and methods of another object
+
+// classical Inheritance
+// prototype Inheritance
+
+// The prototype
+// more than one object can share a prototype object
+// modern browser do provide a technique to directly access prototype but it slow down your page
+
+
+var man = {
+    Fname: 'default',
+    Lname: 'default',
+    Fullname: function() {
+        return this.Fname + " " + this.Lname;
+    }
+}
+
+var mark = {
+    Fname: 'mark',
+    Lname: 'kaneith'
+}
+// Don't do this EVER !! for demo purpose only
+mark.__proto__ = man;
+console.log(mark.Fullname());
+console.log(mark.Fname);
+// Don't do above
+
+var john = {
+    Fname: 'john'
+}
+
+// Don't do this EVER !! for demo purpose only
+john.__proto__ = man;
+console.log(john.Fullname());
+console.log(john.Fname);
+// Don't do above
+
+
+// Everything is object
+var a={};
+var b=function () {};
+var c=[];
+// check in console a.__proto__,b.__proto__,c.__protp__
+// also check b.__proto__.__proto__,c.__protp__.__proto__
+// Remember : object.__proto__ is null
+// ex: a.__proto__.__proto__ ,b.__proto__.__proto__.__Proto__ are here null
+
+// *********Reflection and Extend***********
+
+// Reflection: An object can look at itself,listing and changing its properties and methods
+
+var man = {
+    Fname: 'default',
+    Lname: 'default',
+    Fullname: function() {
+        return this.Fname + " " + this.Lname;
+    }
+}
+
+var mark = {
+    Fname: 'mark',
+    Lname: 'kaneith'
+}
+// Don't do this EVER !! for demo purpose only
+mark.__proto__ = man;
+for (var prop in mark) {
+  console.log(prop + ": "+mark[prop]);
+}
+
+for (var prop in mark) {
+  if (mark.hasOwnProperty(prop)) {
+      console.log(prop + ": "+mark[prop]);
+}
+
+}
+
+var zuke={
+  address:'2wn mr road 112',
+  getFullname:function () {
+    return this.Lname+ " "+this.Fname
+  }
+}
+
+var asin={
+  getFname:function () {
+    return Fname
+  }
+}
+
+._extend(mark,zuke,asin);
+console.log(mark);
+
 //reach at me
