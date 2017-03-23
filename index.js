@@ -1,5 +1,3 @@
-
-
 var person = {
     firstname: "badal",
     lastname: "kumar",
@@ -749,10 +747,10 @@ console.log('----------------------------');
 
 // null is a bug in js
 
-var a=2;
-var b="striing";
-var c={};
-var d=[];
+var a = 2;
+var b = "striing";
+var c = {};
+var d = [];
 console.log(a);
 console.log(b);
 console.log(c);
@@ -761,11 +759,11 @@ console.log(d);
 console.log(Object.prototype.toString.call(d));
 
 function myperson(name) {
-  this.name=name;
+    this.name = name;
 
 }
 
-var e=new myperson('mark');
+var e = new myperson('mark');
 console.log(typeof e);
 console.log(e instanceof myperson);
 
@@ -777,35 +775,28 @@ console.log('------------------');
 // *******Strict Mode*************
 
 var mynameis;
-mynamei={};
-console.log(mynamei);//object
-console.log(mynameis);//undefine
+mynamei = {};
+console.log(mynamei); //object
+console.log(mynameis); //undefine
 
 // in Strict Mode
 
-"use strict";//it should be on the top of the program or function
+"use strict"; //it should be on the top of the program or function
 var mynameis;
-mynamei={};
-console.log(mynamei);//error
-console.log(mynameis);//
+mynamei = {};
+console.log(mynamei); //error
+console.log(mynameis); //
 
 
 function strictCheck() {
-  "use strict";//it should be on the top of the program or function
+    "use strict"; //it should be on the top of the program or function
 
-   var mynameis;
-  mynamei={};
-  console.log(mynamei);//error
-  console.log(mynameis);//
+    var mynameis;
+    mynamei = {};
+    console.log(mynamei); //error
+    console.log(mynameis); //
 }
 strictCheck();
-
-
-
-
-
-
-
 
 
 
