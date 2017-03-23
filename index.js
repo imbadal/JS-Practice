@@ -1,3 +1,5 @@
+
+
 var person = {
     firstname: "badal",
     lastname: "kumar",
@@ -487,9 +489,9 @@ console.log(john.Fname);
 
 
 // Everything is object
-var a={};
-var b=function () {};
-var c=[];
+var a = {};
+var b = function() {};
+var c = [];
 // check in console a.__proto__,b.__proto__,c.__protp__
 // also check b.__proto__.__proto__,c.__protp__.__proto__
 // Remember : object.__proto__ is null
@@ -514,30 +516,303 @@ var mark = {
 // Don't do this EVER !! for demo purpose only
 mark.__proto__ = man;
 for (var prop in mark) {
-  console.log(prop + ": "+mark[prop]);
+    console.log(prop + ": " + mark[prop]);
 }
 
 for (var prop in mark) {
-  if (mark.hasOwnProperty(prop)) {
-      console.log(prop + ": "+mark[prop]);
-}
+    if (mark.hasOwnProperty(prop)) {
+        console.log(prop + ": " + mark[prop]);
+    }
 
 }
 
-var zuke={
-  address:'2wn mr road 112',
-  getFullname:function () {
-    return this.Lname+ " "+this.Fname
-  }
+var zuke = {
+    address: '2wn mr road 112',
+    getFullname: function() {
+        return this.Lname + " " + this.Fname
+    }
 }
 
-var asin={
-  getFname:function () {
-    return Fname
-  }
+var asin = {
+    getFname: function() {
+        return Fname
+    }
 }
 
-._extend(mark,zuke,asin);
+_.extend(mark, zuke, asin);
 console.log(mark);
+// ____________________________________________________
+
+// ***********Building Objects****************
+
+// Function Cunstructor and new
+// Function constroctors are only functions
+
+
+function employee(fname, lname) {
+    this.fname = fname;
+    this.lname = lname;
+    console.log('This function is invoked');
+
+}
+
+var john = new employee('john', 'mark');
+console.log(john)
+
+var jemmy = new employee('jemmy', 'enn');
+console.log(jemmy);
+
+console.log('_________________________________');
+// Function Constructor : A normal function that is used to construct object
+// The this variable points a new empty object, and that object is returned from the function automatically.
+
+
+// Function Cunstructor and prototype
+
+function Employee(fname, lname) {
+    this.fname = fname;
+    this.lname = lname;
+    console.log('This function is invoked');
+
+}
+Employee.prototype.Fullname = function() {
+    return this.fname + ' ' + this.lname;
+}
+
+
+var john = new Employee('john', 'mark');
+console.log(john)
+
+var jemmy = new Employee('jemmy', 'enn');
+console.log(jemmy);
+
+console.log(john.Fullname());
+
+// If you wants to make a function as  functon Cunstructor then start the function from capital letter ex: Employee
+
+// functon Constructor
+var a = new Number(5);
+console.log(a); //an object aomes as output
+console.log(a.toFixed(2)); //o/p:"5.00"
+
+console.log("javascript".length);
+
+var str = new String("javascript");
+console.log(str.indexOf("a"));
+
+var d = new Date();
+console.log(d);
+
+//
+String.prototype.isLength = function(limit) {
+    return this.length > limit;
+}
+
+console.log("javascript".isLength(5)); //true
+
+Number.prototype.isPositive = function() {
+    return this > 0;
+}
+// 3.isPositive();//error bcoz js can't convert a num to an object automatically but can convert a srting to object automatically
+
+var num = new Number(5);
+console.log(num.isPositive()); //true
+
+// *************Dangerious aside of function constructor
+// moment.js
+console.log("_______________________________________________");
+var x = 4;
+var y = new Number(4); //object
+console.log(x == y); //true
+console.log(x === y); //false
+
+var z = Number("4"); //number
+
+console.log(x === z); //true
+
+
+console.log("______________________");
+
+// Dangerious asides of array
+
+Array.prototype.myFeature = "Dont use 'for in' in case of array ";
+
+var arr7 = ['ind', 'aus', 'nz', 'sa'];
+for (var prop in arr7) {
+    console.log(prop + ':' + arr7[prop]);
+}
+
+// *************Object.create*************
+
+var mydata = {
+    Fstname: 'Default',
+    Lstname: 'Default',
+    greetus: function() {
+        return 'Hello ' + this.Fstname;
+    }
+}
+
+var john = Object.create(mydata);
+john.Fstname = 'john';
+john.Lstname = 'Mark'
+console.log(john);
+
+
+// Object
+//    Fstname: "john"
+//    Lstname: "Mark"
+//       __proto__: Object
+//       Fstname: "Default"
+//       Lstname: "Default"
+//       greetus: ()
+//       __proto__: Object
+
+// Polyfill : code that adds a feature which the engine may lack
+
+// ES6 AND CLASSES
+
+// class is an object in javascript
+console.log('__________________________');
+class Person {
+    constructor(fname, lname) {
+        this.fname = fname;
+        this.lname = lname;
+    }
+
+    greetHello() {
+        return "Hello " + fname;
+    }
+}
+
+var john = new Person('John', 'Huger');
+console.log(john);
+
+class InfornalPerson extends Person {
+    constructor(fname, lname) {
+        super(fname, lname);
+    }
+    greetHello() {
+        return "Hay " + fname;
+    }
+}
+var mark = new Person('mark', 'suger');
+console.log(mark);
+
+// Syntactic sugar: A different way to type something that doesn't change how it works under the hood
+
+// Initializing array
+console.log('____________________');
+
+var people = [{
+        fname: 'jurry',
+        lname: 'mark',
+        address: [
+            '2332 st vip',
+            '45 rd main'
+        ]
+    },
+
+    {
+        fname: 'razek',
+        lname: 'tony',
+        addess: [
+            '5554 st third',
+            '78 rd near'
+        ],
+        greet: function() {
+            return 'Hello!!';
+        }
+    }
+]
+console.log(people);
+
+console.log('------------------------');
+// *************Strict mode for functions*******
+
+function strict() {
+    // Function-level strict mode syntax
+    'use strict';
+
+    function nested() {
+        return 'And so am I!';
+    }
+    return "Hi!  I'm a strict mode function!  " + nested();
+}
+
+function notStrict() {
+    return "I'm not strict.";
+}
+
+
+console.log('----------------------------');
+// typeof,instanceof
+
+// null is a bug in js
+
+var a=2;
+var b="striing";
+var c={};
+var d=[];
+console.log(a);
+console.log(b);
+console.log(c);
+console.log(d);
+
+console.log(Object.prototype.toString.call(d));
+
+function myperson(name) {
+  this.name=name;
+
+}
+
+var e=new myperson('mark');
+console.log(typeof e);
+console.log(e instanceof myperson);
+
+console.log(typeof undefined);
+console.log(typeof null);
+
+console.log('------------------');
+
+// *******Strict Mode*************
+
+var mynameis;
+mynamei={};
+console.log(mynamei);//object
+console.log(mynameis);//undefine
+
+// in Strict Mode
+
+"use strict";//it should be on the top of the program or function
+var mynameis;
+mynamei={};
+console.log(mynamei);//error
+console.log(mynameis);//
+
+
+function strictCheck() {
+  "use strict";//it should be on the top of the program or function
+
+   var mynameis;
+  mynamei={};
+  console.log(mynamei);//error
+  console.log(mynameis);//
+}
+strictCheck();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //reach at me
