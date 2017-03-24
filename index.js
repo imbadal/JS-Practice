@@ -798,7 +798,11 @@ function strictCheck() {
 }
 strictCheck();
 
+// **************jQuery******************
 
+
+
+//Build a framework library
 
 
 
