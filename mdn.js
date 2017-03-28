@@ -594,6 +594,17 @@ function divide() {
   }
 }
 divide();
-//
+
+
+
+//*************Promises
+
+// A Promise is in one of these states:
+
+// pending: initial state, not fulfilled or rejected.
+// fulfilled: successful operation
+// rejected: failed operation.
+// settled: the Promise is either fulfilled or rejected, but not pending.
+
 //
 //
