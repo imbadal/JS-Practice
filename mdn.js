@@ -145,13 +145,15 @@ const PI = 3.14;
 //   const g = 5;
 //   var g;
 
-  //statements
+//statements
 
 //
 //However, the properties of objects assigned to constants are not protected.
 
 //For example:
-const MY_OBJECT = {'key': 'value'};
+const MY_OBJECT = {
+    'key': 'value'
+};
 MY_OBJECT.key = 'otherValue'; //No error
 
 //*****************Data structures and types
@@ -182,7 +184,7 @@ x = 'The answer is ' + 42 // "The answer is 42"
 y = 42 + ' is the answer' // "42 is the answer"
 
 '37' - 7 // 30
-'37' + 7 // "377"
+    '37' + 7 // "377"
 
 // ********************Converting strings to numbers
 //
@@ -198,7 +200,7 @@ parseInt(' 0xF', 16);
 parseInt(' F', 16);
 parseInt('17', 8);
 parseInt(021, 8);
-parseInt('015', 10);   // parseInt(015, 10); will return 15
+parseInt('015', 10); // parseInt(015, 10); will return 15
 parseInt(15.99, 10);
 parseInt('15,123', 10);
 parseInt('FXX123', 16);
@@ -230,37 +232,37 @@ Number.parseInt === parseInt; // true
 // isNaN()
 // Syntax : isNaN(value)
 
- console.log( NaN == NaN);
- console.log( NaN === NaN);
- console.log(0/0);//NaN
+console.log(NaN == NaN);
+console.log(NaN === NaN);
+console.log(0 / 0); //NaN
 
 //Ex:
 var isNaN = function(value) {
     return Number.isNaN(Number(value));
 }
 
-isNaN(NaN);       // true
+isNaN(NaN); // true
 isNaN(undefined); // true
-isNaN({});        // true
+isNaN({}); // true
 
-isNaN(true);      // false
-isNaN(null);      // false
-isNaN(37);        // false
+isNaN(true); // false
+isNaN(null); // false
+isNaN(37); // false
 
 // strings
-isNaN('37');      // false: "37" is converted to the number 37 which is not NaN
-isNaN('37.37');   // false: "37.37" is converted to the number 37.37 which is not NaN
-isNaN('123ABC');  // true:  parseInt("123ABC") is 123 but Number("123ABC") is NaN
-isNaN('');        // false: the empty string is converted to 0 which is not NaN
-isNaN(' ');       // false: a string with spaces is converted to 0 which is not NaN
+isNaN('37'); // false: "37" is converted to the number 37 which is not NaN
+isNaN('37.37'); // false: "37.37" is converted to the number 37.37 which is not NaN
+isNaN('123ABC'); // true:  parseInt("123ABC") is 123 but Number("123ABC") is NaN
+isNaN(''); // false: the empty string is converted to 0 which is not NaN
+isNaN(' '); // false: a string with spaces is converted to 0 which is not NaN
 
 // dates
-isNaN(new Date());                // false
-isNaN(new Date().toString());     // true
+isNaN(new Date()); // false
+isNaN(new Date().toString()); // true
 
 // This is a false positive and the reason why isNaN is not entirely reliable
-isNaN('blabla');   // true: "blabla" is converted to a number.
-                   // Parsing this as a number fails and returns NaN
+isNaN('blabla'); // true: "blabla" is converted to a number.
+// Parsing this as a number fails and returns NaN
 
 
 //toString()
@@ -270,16 +272,16 @@ isNaN('blabla');   // true: "blabla" is converted to a number.
 
 var count = 10;
 
-console.log(count.toString());    // displays '10'
-console.log((17).toString());     // displays '17'
-console.log((17.2).toString());   // displays '17.2'
+console.log(count.toString()); // displays '10'
+console.log((17).toString()); // displays '17'
+console.log((17.2).toString()); // displays '17.2'
 
 var x = 6;
 
-console.log(x.toString(2));       // displays '110'
-console.log((254).toString(16));  // displays 'fe'
+console.log(x.toString(2)); // displays '110'
+console.log((254).toString(16)); // displays 'fe'
 
-console.log((-10).toString(2));   // displays '-1010'
+console.log((-10).toString(2)); // displays '-1010'
 console.log((-0xff).toString(2)); // displays '-11111111'
 
 
@@ -288,11 +290,11 @@ console.log((-0xff).toString(2)); // displays '-11111111'
 
 function myNumberType(n) {
     this.number = n;
-    console.log(this.number);//4
+    console.log(this.number); //4
 }
 
 myNumberType.prototype.valueOf = function() {
-    return this.number*2;
+    return this.number * 2;
 };
 
 myObj = new myNumberType(4);
@@ -337,20 +339,20 @@ var fish = ['Lion', , 'Angel'];
 //5.Object literals
 
 var car = {
-  name: 'safari',//property
-  Brand: 'Tata',
-  SerialNo:2233312
+    name: 'safari', //property
+    Brand: 'Tata',
+    SerialNo: 2233312
 }
 console.log(car);
 
 
 // Example:
 var unusualPropertyNames = {
-  '': 'An empty string',
-  '!': 'Bang!'
+    '': 'An empty string',
+    '!': 'Bang!'
 }
 //console.log(unusualPropertyNames.'');   // SyntaxError: Unexpected string
-console.log(unusualPropertyNames['']);  // An empty string
+console.log(unusualPropertyNames['']); // An empty string
 //console.log(unusualPropertyNames.!);    // SyntaxError: Unexpected token !
 console.log(unusualPropertyNames['!']); // Bang!
 
@@ -410,42 +412,188 @@ var re = /ab+c/;
 //              For example, \u{2F804} is the same as the simple Unicode escapes \uD87E\uDC04.
 
 //
+//  3.****************Control flow and error handling
 //
+//*******Block statement
+
+// {
+//   statement_1;
+//   statement_2;
+//   .
+//   .
+//   statement_n;
+// }
+//Example
+//Block statements are commonly used with control flow statements (e.g. if, for, while).
+// while (x < 10) {
+//   x++;
+// }
+var x = 1; {
+    var x = 2;
+}
+console.log(x); // outputs 2
+
+//This outputs 2 because the var x statement within the block is in the same scope as the var x statement before the block.
 //
+//*************Conditional statements
 //
+//JavaScript supports two conditional statements: if...else and switch.
+
+// It is advisable to not use simple assignments in a conditional expression, because the assignment can be confused with equality when glancing over the code. For example, do not use the following code:
+if (x = y) {
+    /* statements here */
+    console.log('hiii');
+}
+
+//If you need to use an assignment in a conditional expression, a common practice is to put additional parentheses around the assignment. For example:
+
+if ((x = y)) {
+    /* statements here */
+    console.log('It is a good practice');
+}
+
+// *******Falsy values
+
+// false
+// undefined
+// null
+// 0
+// NaN
+// the empty string ("")
+
+
+var b = new Boolean(false);
+if (b) {} // this condition evaluates to true
+if (b == true) {} // this condition evaluates to false
+
+
+// *************switch statement
+
+// switch (expression) {
+//   case label_1:
+//     statements_1
+//     [break;]
+//   case label_2:
+//     statements_2
+//     [break;]
+//     ...
+//   default:
+//     statements_def
+//     [break;]
+// }
+
+
+//***********Exception handling statements
+
+// To handle run time error in javascript program
+//You can throw exceptions using the throw statement and handle them using the try...catch statements.
+
+
+//**********Exception types
+
+
+//   i.DOMException
+//  ii.DOMError
+// iii.ECMAScript exceptions
+
+
+//i.*****DOMException  link : https://developer.mozilla.org/en-US/docs/Web/API/DOMException
+
+//  Exception which occurs as a result of calling a method or accessing a property of a web API is called DOMException.
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+//  Error names:
+
+// IndexSizeError
+// HierarchyRequestError
+// WrongDocumentError
+// InvalidCharacterError
+// NoModificationAllowedError
+// NotFoundError
+// NotSupportedError
+// InvalidStateError
+// SyntaxError
+// InvalidModificationError
+// NamespaceError
+// InvalidAccessError
+// TypeMismatchError
+// SecurityError
+// NetworkError
+// AbortError
+// URLMismatchError
+// QuotaExceededError
+// TimeoutError
+// InvalidNodeTypeError
+// DataCloneError
+// EncodingError
+// NotReadableError
+// UnknownError
+// ConstraintError
+// DataError
+// TransactionInactiveError
+// ReadOnlyError
+// VersionError
+// OperationError
+// NotAllowedError
+
+
+//ii.**********DOMError link: https://developer.mozilla.org/en-US/docs/Web/API/DOMError
+
+
+//The DOMError interface describes an error object that contains an error name.
+
+//ex : WrongDocumentError  :  The object is in the wrong document.
+//     NotFoundError :  The object can not be found here.
+
+
+//iii.ECMAScript exceptions
+
+//  Error types
+
+// EvalError
+// InternalError
+// RangeError
+// ReferenceError
+// SyntaxError
+// TypeError
+// URIError
+
+
+try {
+    console.log(helloJS());
+    console.log('This line wiil not run at the time of exceptions');
+} catch (e) {
+    console.log('Message : ' + e.message);
+    console.log('Descriptions : ' + e.descriptions);
+    console.log('Stack tree : ' + e.stack);
+} finally {
+    console.log('Inside Final block');
+}
+
+// try,catch , finally cannot handle syntax erroe
+
+// throw statement used in JavaScript to raise a customizid expression
+
+function divide() {
+  var numerator=Number(prompt('Please enter numerator'));
+  var denominator=Number(prompt("Enter denominator"));
+  try {
+    if (denominator==0) {
+      throw{
+        error:"divide by 0 error",
+        message: "denominator can't be 0"
+      }
+    }
+    else {
+      console.log('Result = ' +(numerator/denominator));
+    }
+  } catch (e) {
+    console.log('Error : '+e.error);
+    console.log('Message : '+e.message);
+  } finally {
+    console.log("It's the final block");
+  }
+}
+divide();
 //
 //
 //
