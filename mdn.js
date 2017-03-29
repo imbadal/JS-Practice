@@ -569,7 +569,7 @@ try {
     console.log('Inside Final block');
 }
 
-// try,catch , finally cannot handle syntax erroe
+// try,catch , finally cannot handle syntax error
 
 // throw statement used in JavaScript to raise a customizid expression
 
@@ -596,7 +596,6 @@ function divide() {
 divide();
 
 
-
 //*************Promises
 
 // A Promise is in one of these states:
@@ -605,6 +604,12 @@ divide();
 // fulfilled: successful operation
 // rejected: failed operation.
 // settled: the Promise is either fulfilled or rejected, but not pending.
-
+console.log('______________________');
 //
-//
+//Example:
+new Promise(function (resolve) {
+  console.log('first');
+  console.log('second');
+}).then(function () {
+  console.log('third');
+});
