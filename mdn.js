@@ -573,28 +573,28 @@ try {
 
 // throw statement used in JavaScript to raise a customizid expression
 
+/*
 function divide() {
-  var numerator=Number(prompt('Please enter numerator'));
-  var denominator=Number(prompt("Enter denominator"));
-  try {
-    if (denominator==0) {
-      throw{
-        error:"divide by 0 error",
-        message: "denominator can't be 0"
-      }
+    var numerator = Number(prompt('Please enter numerator'));
+    var denominator = Number(prompt("Enter denominator"));
+    try {
+        if (denominator == 0) {
+            throw {
+                error: "divide by 0 error",
+                message: "denominator can't be 0"
+            }
+        } else {
+            console.log('Result = ' + (numerator / denominator));
+        }
+    } catch (e) {
+        console.log('Error : ' + e.error);
+        console.log('Message : ' + e.message);
+    } finally {
+        console.log("It's the final block");
     }
-    else {
-      console.log('Result = ' +(numerator/denominator));
-    }
-  } catch (e) {
-    console.log('Error : '+e.error);
-    console.log('Message : '+e.message);
-  } finally {
-    console.log("It's the final block");
-  }
 }
 divide();
-
+*/
 
 //*************Promises
 
@@ -607,9 +607,37 @@ divide();
 console.log('______________________');
 //
 //Example:
-new Promise(function (resolve) {
-  console.log('first');
-  console.log('second');
-}).then(function () {
-  console.log('third');
+new Promise(function(resolve) {
+    console.log('first');
+    console.log('second');
+}).then(function() {
+    console.log('third');
 });
+
+// Example of Promises
+
+let playmatch = function() {
+    return new Promise(function(resolve, reject) {
+        resolve("Play the match ");
+    })
+};
+
+let makeCenturi = function(message) {
+    return new Promise(function(resolve, reject) {
+        resolve(message + ' Make a centuri');
+    })
+};
+
+let mom = function(message) {
+    return new Promise(function(resolve, reject) {
+        resolve(message + ' Get the man of the match');
+    })
+};
+
+playmatch().then(function(result) {
+    return makeCenturi(result);
+}).then(function(result) {
+    return mom(result);
+}).then(function(result) {
+    console.log('finished ' + result);
+})
