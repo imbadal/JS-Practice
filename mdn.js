@@ -641,3 +641,19 @@ playmatch().then(function(result) {
 }).then(function(result) {
     console.log('finished ' + result);
 })
+
+// Loops and iteration
+/*
+
+The statements for loops provided in JavaScript are:
+
+for statement
+do...while statement
+while statement
+labeled statement
+break statement
+continue statement
+for...in statement
+for...of statement
+
+*/
